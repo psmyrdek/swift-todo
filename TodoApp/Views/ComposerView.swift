@@ -27,11 +27,11 @@ struct ComposerView: View {
                     .padding(10)
                     .imageScale(.medium)
             }
-                .padding(.vertical, 5)
-                .padding(.horizontal, 15)
-                .background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .leading, endPoint: .trailing))
-                .foregroundColor(.white)
-                .cornerRadius(10)
+            .padding(.vertical, 5)
+            .padding(.horizontal, 15)
+            .background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .leading, endPoint: .trailing))
+            .foregroundColor(.white)
+            .cornerRadius(10)
             
         }
     }

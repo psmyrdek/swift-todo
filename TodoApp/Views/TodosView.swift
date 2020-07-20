@@ -13,6 +13,9 @@ struct TodosView: View {
     var listName: String
     var todos: [Todo]
     
+    var onCompletionChange: (Int, Bool) -> Void
+    var onRemove: (Int) -> Void
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text(listName)
@@ -25,19 +28,13 @@ struct TodosView: View {
                 Text("There are no todos in this section")
             } else {
                 ForEach(self.todos) { todo in
-                    TodosEntryView(todo: todo)
+                    TodosEntryView(
+                        todo: todo,
+                        onCompletionChange: self.onCompletionChange,
+                        onRemove: self.onRemove
+                    )
                 }
             }
         }
-    }
-}
-
-struct TodosView_Previews: PreviewProvider {
-    static var previews: some View {
-        TodosView(listName: "My Todos", todos: [
-            Todo(id: 0, text: "Lorem ipsum 1"),
-            Todo(id: 1, text: "Lorem ipsum 2"),
-            Todo(id: 2, text: "Lorem ipsum 3")
-        ])
     }
 }

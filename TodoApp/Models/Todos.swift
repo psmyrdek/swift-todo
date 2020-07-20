@@ -30,4 +30,10 @@ struct Todos {
             todo.id != id
         })
     }
+    
+    mutating func changeCompletionStatus(id: Int, isCompleted: Bool) {
+        if let index = self.todos.firstIndex(where: {todo in todo.id == id}) {
+            self.todos[index].isCompleted = isCompleted
+        }
+    }
 }

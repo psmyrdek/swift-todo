@@ -12,16 +12,24 @@ struct TodoListView: View {
     
     @ObservedObject var todos: TodoListController
     
+    func onTodoRemove(id: Int) -> Void {
+        todos.removeTodo(id: id)
+    }
+    
+    func onChangeCompletionStatus(id: Int, isCompleted: Bool) -> Void {
+        todos.changeCompletionStatus(id: id, isCompleted: isCompleted)
+    }
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
                 ComposerView(onTodoComposed: { todo in
                     self.todos.addTodo(todo: todo)
                 })
-                TodosView(listName: "Active", todos: todos.todosNotCompleted)
-                    .padding([.vertical], 5)
-                TodosView(listName: "Completed", todos: todos.todosCompleted)
-                    .padding([.vertical], 5)
+                TodosView(listName: "Active", todos: todos.todosNotCompleted, onCompletionChange: onChangeCompletionStatus, onRemove: onTodoRemove)
+                    .padding([.top], 20)
+                TodosView(listName: "Completed", todos: todos.todosCompleted, onCompletionChange: onChangeCompletionStatus, onRemove: onTodoRemove)
+                    .padding([.top], 20)
             }.padding()
         }
     }

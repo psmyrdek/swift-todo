@@ -22,10 +22,14 @@ struct ComposerView: View {
     var body : some View {
         HStack {
             TextField("What's up for today?", text: $todo)
-            Button("Add", action: onComposed)
+            Button(action: onComposed) {
+                Image(systemName: "plus")
+                    .padding(10)
+                    .imageScale(.medium)
+            }
                 .padding(.vertical, 5)
                 .padding(.horizontal, 15)
-                .background(Color.blue)
+                .background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .leading, endPoint: .trailing))
                 .foregroundColor(.white)
                 .cornerRadius(10)
             

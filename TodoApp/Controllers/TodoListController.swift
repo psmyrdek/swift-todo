@@ -28,4 +28,8 @@ class TodoListController: ObservableObject {
         todos.remove(id: id)
     }
     
+    func changeCompletionStatus(id: Int, isCompleted: Bool) {
+        todos.changeCompletionStatus(id: id, isCompleted: isCompleted)
+    }
+    
 }

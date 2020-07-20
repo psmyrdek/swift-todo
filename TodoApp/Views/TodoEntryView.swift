@@ -12,12 +12,15 @@ struct TodosEntryView: View {
     
     var todo: Todo
     
-    func onRemove() {
-        print("removing \(todo.id)")
+    var onCompletionChange: (Int, Bool) -> Void
+    var onRemove: (Int) -> Void
+    
+    func onTodoRemove() {
+        onRemove(todo.id)
     }
     
     func onChangeCompletionStatus() {
-        
+        onCompletionChange(todo.id, !todo.isCompleted)
     }
     
     var body: some View {
@@ -28,17 +31,7 @@ struct TodosEntryView: View {
             TodoEntryButton(iconSystemName: iconName, buttonAction: onChangeCompletionStatus)
             Text(todo.text)
             Spacer()
-            TodoEntryButton(iconSystemName: "trash", buttonAction: onRemove)
-        }
-    }
-}
-
-struct TodoEntryView_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            TodosEntryView(todo: Todo(id: 0, text: "Great job!"))
-            TodosEntryView(todo: Todo(id: 0, text: "Great job!"))
-            TodosEntryView(todo: Todo(id: 0, text: "Great job!"))
+            TodoEntryButton(iconSystemName: "trash", buttonAction: onTodoRemove)
         }
     }
 }
